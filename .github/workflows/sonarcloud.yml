@@ -28,13 +28,3 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-
-      - name: SonarCloud Scan
-        env:
-          YOUR_SONAR_TOKEN: ${{ secrets.YOUR_SONAR_TOKEN }}
-        run: |
-          sonar-scanner `
-            -Dsonar.projectKey=MichalZx_eBiznes_sonar `
-            -Dsonar.organization=michalzx `
-            -Dsonar.host.url=https://sonarcloud.io `
-            -Dsonar.login=$env:YOUR_SONAR_TOKEN `
