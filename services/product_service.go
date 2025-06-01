@@ -9,6 +9,11 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+const (
+	errCategoryNotFound = "Category not found"
+	errProductNotFound  = "Product not found"
+)
+
 func CreateProduct(c echo.Context) error {
 	product := &models.Product{}
 	if err := c.Bind(product); err != nil {
@@ -17,7 +22,7 @@ func CreateProduct(c echo.Context) error {
 
 	var category models.Category
 	if err := database.DB.First(&category, product.CategoryId).Error; err != nil {
-		return echo.NewHTTPError(http.StatusNotFound, "Category not found")
+		return echo.NewHTTPError(http.StatusNotFound, errCategoryNotFound)
 	}
 
 	product.Category = category
@@ -38,7 +43,7 @@ func GetProduct(c echo.Context) error {
 	}
 	var product models.Product
 	if err := database.DB.Preload("Category").First(&product, id).Error; err != nil {
-		return echo.NewHTTPError(http.StatusNotFound, "Product not found")
+		return echo.NewHTTPError(http.StatusNotFound, errProductNotFound)
 	}
 	return c.JSON(http.StatusOK, product)
 }
@@ -52,12 +57,12 @@ func UpdateProduct(c echo.Context) error {
 
 	var existing models.Product
 	if err := database.DB.First(&existing, id).Error; err != nil {
-		return echo.NewHTTPError(http.StatusNotFound, "Product not found")
+		return echo.NewHTTPError(http.StatusNotFound, errProductNotFound)
 	}
 
 	var category models.Category
 	if err := database.DB.First(&category, updated.CategoryId).Error; err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Category not found")
+		return echo.NewHTTPError(http.StatusBadRequest, errCategoryNotFound)
 	}
 
 	existing.Name = updated.Name
@@ -73,7 +78,7 @@ func DeleteProduct(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	var product models.Product
 	if err := database.DB.First(&product, id).Error; err != nil {
-		return echo.NewHTTPError(http.StatusNotFound, "Product not found")
+		return echo.NewHTTPError(http.StatusNotFound, errProductNotFound)
 	}
 	database.DB.Delete(&product)
 	return c.NoContent(http.StatusNoContent)

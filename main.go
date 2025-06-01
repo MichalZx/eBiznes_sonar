@@ -7,26 +7,35 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+const (
+	products         = "/products"
+	productsId       = "/products/:id"
+	categories       = "/categories"
+	categoriesId     = "/categories/:id"
+	cartId           = "/carts/:cartId"
+	cartIdProductsId = "/carts/:cartId/products/:productId"
+)
+
 func main() {
 	e := echo.New()
 	database.ConnectDB()
 
-	e.POST("/products", services.CreateProduct)
-	e.GET("/products", services.GetProducts)
-	e.GET("/products/:id", services.GetProduct)
-	e.PUT("/products/:id", services.UpdateProduct)
-	e.DELETE("/products/:id", services.DeleteProduct)
+	e.POST(products, services.CreateProduct)
+	e.GET(products, services.GetProducts)
+	e.GET(productsId, services.GetProduct)
+	e.PUT(productsId, services.UpdateProduct)
+	e.DELETE(productsId, services.DeleteProduct)
 
-	e.POST("/categories", services.CreateCategory)
-	e.GET("/categories", services.GetCategories)
-	e.GET("/categories/:id", services.GetCategory)
-	e.DELETE("/categories/:id", services.DeleteCategory)
+	e.POST(categories, services.CreateCategory)
+	e.GET(categories, services.GetCategories)
+	e.GET(categoriesId, services.GetCategory)
+	e.DELETE(categoriesId, services.DeleteCategory)
 
 	e.POST("/carts", services.CreateCart)
-	e.GET("/carts/:cartId", services.GetCart)
-	e.DELETE("/carts/:cartId", services.DeleteCart)
-	e.POST("/carts/:cartId/products/:productId", services.AddProductToCart)
-	e.DELETE("/carts/:cartId/products/:productId", services.RemoveProductFromCart)
+	e.GET(cartId, services.GetCart)
+	e.DELETE(cartId, services.DeleteCart)
+	e.POST(cartIdProductsId, services.AddProductToCart)
+	e.DELETE(cartIdProductsId, services.RemoveProductFromCart)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
