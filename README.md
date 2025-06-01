@@ -1,4 +1,9 @@
-# GO
+# Sonar
+
+![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=MichalZx_eBiznes_sonar&metric=alert_status)
+![Bugs](https://sonarcloud.io/api/project_badges/measure?project=MichalZx_eBiznes_sonar&metric=bugs)
+![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=MichalZx_eBiznes_sonar&metric=vulnerabilities)
+![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=MichalZx_eBiznes_sonar&metric=code_smells)
 
 ## POST Category
 ![POST_Category](Photos/POST_Category.png)
