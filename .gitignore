@@ -1,0 +1,42 @@
+# Binaries
+/go-echo-crud
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of `go build`
+*.out
+
+# Dependency directories
+/vendor/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# GORM SQLite or test db (optional)
+*.db
+*.sqlite
+
+# Go modules cache (don't ignore `go.mod` and `go.sum`)
+/pkg/
+/bin/
+
+# Coverage reports
+coverage.out
