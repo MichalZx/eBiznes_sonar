@@ -40,3 +40,21 @@ Thumbs.db
 
 # Coverage reports
 coverage.out
+
+# Node.js / React / Vite
+node_modules/
+dist/
+build/
+.vite/
+
+# SonarCloud
+.sonar/
+report-task.txt
+
+# Pre-commit
+.pre-commit-config.yaml~
+.pre-commit-cache/
+
+# Misc
+*.tmp
+*.temp
