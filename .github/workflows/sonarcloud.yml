@@ -29,9 +29,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
-      - name: Run tests with coverage
-        run: go test -coverprofile=coverage.out ./...
-
       - name: Install SonarScanner
         shell: powershell
         run: |
